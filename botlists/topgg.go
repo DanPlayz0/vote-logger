@@ -30,7 +30,9 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 
 	response := helpers.GetUserData(v)
 
-	helpers.SendVoteWebhook(response, v)
+	message := fmt.Sprintf("https://top.gg/bot/%s/vote", v.Bot)
+
+	helpers.SendVoteWebhook(response, message)
 
 	w.WriteHeader(http.StatusOK)
 

@@ -11,9 +11,9 @@ import (
 	"github.com/Would-You-Bot/vote-logger/types"
 )
 
-func SendVoteWebhook(response types.Response, v types.TopggVote) {
+func SendVoteWebhook(response types.Response, message string) {
 	payload := map[string]interface{}{
-		"content":     fmt.Sprintf("%s Voted for me on https://top.gg/bot/%s/vote", emojis.GetRandomEmoji(), v.Bot),
+		"content":     fmt.Sprintf("%s Voted for me on %s", emojis.GetRandomEmoji(), message),
 		"embeds":      nil,
 		"attachments": []interface{}{},
 		"username":    CleanUsername(response.Data.Username),
@@ -32,7 +32,7 @@ func SendVoteWebhook(response types.Response, v types.TopggVote) {
 							"animated": false,
 						},
 						"style": 5,
-						"url":   fmt.Sprintf("https://top.gg/bot/%s/vote", v.Bot),
+						"url":   message,
 					},
 				},
 			},

@@ -18,7 +18,7 @@ func main() {
 	router.HandleFunc("/topgg", botlists.HandleTopgg).Methods("POST")
 	router.HandleFunc("/dscbot", botlists.HandleTopgg).Methods("POST")
 
-	fmt.Printf("Server started on port 8000\n")
-	errListen := http.ListenAndServe(":8000", router)
+	fmt.Printf("Server started on port 3340\n")
+	errListen := http.ListenAndServe(":3340", router)
 	log.Fatal(errListen)
 }
