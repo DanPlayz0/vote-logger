@@ -27,6 +27,8 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 
 	err := dec.Decode(&v)
 	if err != nil {
+		fmt.Println("line 30")
+		fmt.Print(err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
