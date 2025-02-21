@@ -21,6 +21,8 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 	dec.DisallowUnknownFields()
 
+	fmt.Println("line 24")
+
 	var v types.TopggVote
 
 	err := dec.Decode(&v)
@@ -29,11 +31,14 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println("line 34")
+
 	response := helpers.GetUserData(v)
 
 	message := fmt.Sprintf("https://top.gg/bot/%s/vote", v.Bot)
-
+	fmt.Println("line 39")
 	helpers.SendVoteWebhook(response, message)
+	fmt.Println("line 41")
 
 	w.WriteHeader(http.StatusOK)
 
