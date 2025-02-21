@@ -23,7 +23,6 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 	var v types.TopggVote
 
 	err := dec.Decode(&v)
-	fmt.Print(v)
 	if err != nil {
 		fmt.Print(err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
