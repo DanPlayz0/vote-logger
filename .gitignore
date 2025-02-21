@@ -22,6 +22,3 @@ go.work
 
 # Envrioment variables file
 .env
-
-# Temporary files
-*.js
