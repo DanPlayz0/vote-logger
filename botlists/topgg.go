@@ -10,6 +10,7 @@ import (
 )
 
 func HandleTopgg(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received vote from top.gg")
 
 	if !helpers.Validate(r, w) {
 		return
