@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/Would-You-Bot/vote-logger/config"
 	"github.com/gorilla/mux"
 )
 
@@ -38,8 +39,6 @@ func cleanUsername(username string) string {
 
 func handleTopgg(w http.ResponseWriter, r *http.Request) {
 
-	auth := ""
-
 	ct := r.Header.Get("Content-Type")
 	if ct != "" {
 		mediaType := strings.ToLower(strings.TrimSpace(strings.Split(ct, ";")[0]))
@@ -50,7 +49,7 @@ func handleTopgg(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if r.Header.Get("Authorization") != auth {
+	if r.Header.Get("Authorization") != config.Conf.BotList.Topgg.Auth {
 		http.Error(w, "Invalid authorization", http.StatusUnauthorized)
 		return
 	}
@@ -84,8 +83,6 @@ func handleTopgg(w http.ResponseWriter, r *http.Request) {
 	dec.DisallowUnknownFields()
 
 	res.Decode(&resonse)
-
-	webhookURL := "https://discord.com/api/webhooks/yourwebhookurl"
 
 	emojis := [7]string{"<a:jammiesyou:1009965703484424282>",
 		"<a:nyancatyou:1009965705808056350>",
@@ -132,7 +129,7 @@ func handleTopgg(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", webhookURL, bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", config.Conf.WebhookURL, bytes.NewBuffer(jsonData))
 	if err != nil {
 		fmt.Println("Failed to create request:", err)
 		return
@@ -161,10 +158,12 @@ func handleTopgg(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	config.Parse() 
+	
 	router := mux.NewRouter()
-
 	router.HandleFunc("/topgg", handleTopgg).Methods("POST")
+	router.HandleFunc("/dscbot", handleTopgg).Methods("POST")
 
-	err := http.ListenAndServe(":8000", router)
-	log.Fatal(err)
+	errListen := http.ListenAndServe(":8000", router)
+	log.Fatal(errListen)
 }
