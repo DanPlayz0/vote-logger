@@ -19,6 +19,7 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 	r.Body = http.MaxBytesReader(w, r.Body, 1048576)
 
 	dec := json.NewDecoder(r.Body)
+	dec.DisallowUnknownFields()
 
 	var v types.TopggVote
 
