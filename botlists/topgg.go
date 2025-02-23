@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Would-You-Bot/vote-logger/config"
 	"github.com/Would-You-Bot/vote-logger/helpers"
 	"github.com/Would-You-Bot/vote-logger/types"
 )
@@ -12,7 +13,7 @@ import (
 func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received vote from top.gg")
 
-	if !helpers.Validate(r, w) {
+	if !helpers.Validate(r, w, config.Conf.BotList.Topgg.Auth) {
 		return
 	}
 

@@ -7,12 +7,13 @@ import (
 
 	"github.com/Would-You-Bot/vote-logger/helpers"
 	"github.com/Would-You-Bot/vote-logger/types"
+	"github.com/Would-You-Bot/vote-logger/config"
 )
 
-func HandleDlistggg(w http.ResponseWriter, r *http.Request) {
+func HandleDlistgg(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received vote from dlist.gg")
 
-	if !helpers.Validate(r, w) {
+	if !helpers.Validate(r, w, config.Conf.BotList.Dlist.Auth) {
 		return
 	}
 
