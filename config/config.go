@@ -15,9 +15,6 @@ type (
 			Dscbot struct {
 				Auth string `env:"AUTH"`
 			} `envPrefix:"DSCBOT_"`
-			Dlist struct {
-				Auth string `env:"AUTH"`
-			} `envPrefix:"DLIST_"`
 		}
 		WebhookURL string `env:"WEBHOOK_URL"`
 	}
