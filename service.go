@@ -17,6 +17,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/topgg", botlists.HandleTopgg).Methods("POST")
 	router.HandleFunc("/dscbot", botlists.HandleTopgg).Methods("POST")
+	router.HandleFunc("/dlist", botlists.HandleDlistggg ).Methods("POST")
 
 	fmt.Printf("Server started on port 3340\n")
 	errListen := http.ListenAndServe(":3340", router)

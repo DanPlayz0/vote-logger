@@ -9,8 +9,8 @@ import (
 	"github.com/Would-You-Bot/vote-logger/types"
 )
 
-func HandleTopgg(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received vote from top.gg")
+func HandleDlistggg(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received vote from dlist.gg")
 
 	if !helpers.Validate(r, w) {
 		return
@@ -31,7 +31,7 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 
 	response := helpers.GetUserData(v)
 
-	message := fmt.Sprintf("https://top.gg/bot/%s/vote", v.Bot)
+	message := fmt.Sprintf("https://discordlist.gg/bot/%s/vote", v.Bot)
 
 	helpers.SendVoteWebhook(response, message)
 
