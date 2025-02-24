@@ -2,7 +2,7 @@ package config
 
 import (
 	"os"
-	
+
 	"github.com/caarlos0/env/v10"
 	"github.com/joho/godotenv"
 )
@@ -20,6 +20,7 @@ type (
 			} `envPrefix:"DSCBOT_"`
 		}
 		WebhookURL string `env:"WEBHOOK_URL"`
+		Port       string `env:"PORT" envDefault:"3340"`
 	}
 )
 

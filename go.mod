@@ -6,4 +6,4 @@ require github.com/gorilla/mux v1.8.1
 
 require github.com/caarlos0/env/v10 v10.0.0
 
-require github.com/joho/godotenv v1.5.1 // indirect
+require github.com/joho/godotenv v1.5.1
