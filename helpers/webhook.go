@@ -13,7 +13,7 @@ import (
 
 func SendVoteWebhook(response types.Response, message string) {
 	payload := map[string]interface{}{
-		"content":     fmt.Sprintf("%s Voted for me on %s", emojis.GetRandomEmoji(), message),
+		"content":     fmt.Sprintf("%s Voted for me on <%s>", emojis.GetRandomEmoji(), message),
 		"embeds":      nil,
 		"attachments": []interface{}{},
 		"username":    CleanUsername(response.Data.Username),
