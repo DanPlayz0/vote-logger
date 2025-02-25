@@ -32,7 +32,7 @@ func HandleDscbot(w http.ResponseWriter, r *http.Request) {
 
 	response := helpers.GetUserData(v)
 
-	message := fmt.Sprintf("https://nightly.dsc.bot/%s/vote", v.Bot)
+	message := fmt.Sprintf("https://dsc.bot/%s/vote", v.Bot)
 
 	helpers.SendVoteWebhook(response, message)
 
