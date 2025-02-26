@@ -30,7 +30,7 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := helpers.GetUserData(v)
+	response := helpers.GetUserData(v.User)
 
 	message := fmt.Sprintf("https://top.gg/bot/%s/vote", v.Bot)
 
