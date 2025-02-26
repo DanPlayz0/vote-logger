@@ -8,8 +8,8 @@ import (
 	"github.com/Would-You-Bot/vote-logger/types"
 )
 
-func GetUserData(v types.Vote) types.Response {
-	res, err := http.Get("https://japi.rest/discord/v1/user/" + v.User)
+func GetUserData(user_id string) types.Response {
+	res, err := http.Get("https://japi.rest/discord/v1/user/" + user_id)
 	if err != nil {
 		log.Fatalln(err)
 	}

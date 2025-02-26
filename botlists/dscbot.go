@@ -30,7 +30,7 @@ func HandleDscbot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := helpers.GetUserData(v)
+	response := helpers.GetUserData(v.User)
 
 	message := fmt.Sprintf("https://dsc.bot/%s/vote", v.Bot)
 
