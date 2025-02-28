@@ -7,8 +7,12 @@ import (
 
 	"github.com/Would-You-Bot/vote-logger/config"
 	"github.com/Would-You-Bot/vote-logger/helpers"
-	"github.com/Would-You-Bot/vote-logger/types"
 )
+
+type TopWebhookData struct {
+	Bot  string `json:"bot"`
+	User string `json:"user"`
+}
 
 func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received vote from top.gg")
@@ -21,7 +25,7 @@ func HandleTopgg(w http.ResponseWriter, r *http.Request) {
 
 	dec := json.NewDecoder(r.Body)
 
-	var v types.Vote
+	var v TopWebhookData
 
 	err := dec.Decode(&v)
 	if err != nil {
