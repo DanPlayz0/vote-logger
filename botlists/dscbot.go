@@ -7,8 +7,13 @@ import (
 
 	"github.com/Would-You-Bot/vote-logger/config"
 	"github.com/Would-You-Bot/vote-logger/helpers"
-	"github.com/Would-You-Bot/vote-logger/types"
 )
+
+type DscWebhookData struct {
+	ListingId string `json:"listing_id"`
+	BotId     string `json:"bot_id"`
+	UserId    string `json:"user_id"`
+}
 
 func HandleDscbot(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received vote from dsc.bot")
@@ -21,7 +26,7 @@ func HandleDscbot(w http.ResponseWriter, r *http.Request) {
 
 	dec := json.NewDecoder(r.Body)
 
-	var v types.Vote
+	var v DscWebhookData
 
 	err := dec.Decode(&v)
 	if err != nil {
@@ -30,13 +35,13 @@ func HandleDscbot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := helpers.GetUserData(v.User)
+	response := helpers.GetUserData(v.UserId)
 
-	message := fmt.Sprintf("https://dsc.bot/%s/vote", v.Bot)
+	message := fmt.Sprintf("https://dsc.bot/%s/vote", v.ListingId)
 
 	helpers.SendVoteWebhook(response, message)
 
 	w.WriteHeader(http.StatusOK)
 
-	fmt.Println("Vote received from " + v.User + " for " + v.Bot)
+	fmt.Println("Vote received from " + v.UserId + " for " + v.BotId)
 }
