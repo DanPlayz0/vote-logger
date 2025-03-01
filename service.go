@@ -10,15 +10,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
-
 func main() {
-	config.Parse() 
-	
+	config.Parse()
+
 	router := mux.NewRouter()
 	router.HandleFunc("/topgg", botlists.HandleTopgg).Methods("POST")
 	router.HandleFunc("/dscbot", botlists.HandleDscbot).Methods("POST")
+	router.HandleFunc("/dlist", botlists.HandleDlist).Methods("POST")
 
 	fmt.Printf("Server started on port %s\n", config.Conf.Port)
-	errListen := http.ListenAndServe(":" + config.Conf.Port, router)
+	errListen := http.ListenAndServe(":"+config.Conf.Port, router)
 	log.Fatal(errListen)
 }
